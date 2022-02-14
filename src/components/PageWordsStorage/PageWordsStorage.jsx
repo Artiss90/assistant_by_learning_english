@@ -15,18 +15,18 @@ const PageWordsStorage = function ({ setWords, words, children }) {
         if ((words.includes(value.toLowerCase())) && (value.trim() !== '')) {
             return
         }
-        console.log("🚀 ~ file: PageWordsStorage.jsx ~ line 21 ~ onSubmit ~ words", words)
-        // words.push(value.toLowerCase())
-        console.log("🚀 ~ file: PageWordsStorage.jsx ~ line 21 ~ onSubmit ~ words", words)
-        console.log("🚀 ~ file: PageWordsStorage.jsx ~ line 21 ~ onSubmit ~ value", value)
         setWords([...words, value])
+        setValue('') // обнуляем
     }
     return <div className={style.container}>
         {children}
         <Box
             component="form"
             sx={{
-                '& > :not(style)': { m: 1, width: '25ch' },
+                display: 'flex',
+                alignItems: 'center',
+                '& > :not(style)': { width: '25ch'},
+                '& > :not(style) + :not(style)': { ml: 1},
             }}
             noValidate
             autoComplete="off"
@@ -34,7 +34,7 @@ const PageWordsStorage = function ({ setWords, words, children }) {
         >
             <TextField id="outlined-basic" label="Введите новое слово" variant="outlined" value={value}
   onChange={handleChange}/>
-            <Button variant="contained" color="success" type="submit">Добавить</Button>
+            <Button variant="contained" color="success" type="submit" >Добавить</Button>
         </Box>
     </div>;
 }
